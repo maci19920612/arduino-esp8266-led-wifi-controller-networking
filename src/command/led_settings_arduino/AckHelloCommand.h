@@ -19,14 +19,4 @@ class AckHelloCommand : public BaseCommand{
     DynamicJsonBuffer jsonBuffer;
 };
 
-void AckHelloCommand::execute(JsonObject& param){
-  JsonObject& result = this->jsonBuffer.createObject();
-  result["result"] = "Success";
-
-  log("Execute ACK hello command!");
-};
-
-bool AckHelloCommand::isApplicable(String command){
-  return String("ack_hello") == command;
-};
 #endif

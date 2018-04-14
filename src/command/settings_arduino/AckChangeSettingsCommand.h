@@ -5,8 +5,6 @@
 #include <ArduinoJson.h>
 #include <Arduino.h>
 
-//Utils
-#include "utils/Logger.h"
 
 //Commands
 #include "command/BaseCommand.h"
@@ -19,13 +17,4 @@ class AckChangeSettingsCommand : public BaseCommand{
     DynamicJsonBuffer jsonBuffer;
 };
 
-void AckChangeSettingsCommand::execute(JsonObject& param){
-  JsonObject& result = this->jsonBuffer.createObject();
-  result["result"] = "Success";
-  log("Execute change settings command!");
-};
-
-bool AckChangeSettingsCommand::isApplicable(String command){
-  return String("ack_change_settings") == command;
-};
 #endif

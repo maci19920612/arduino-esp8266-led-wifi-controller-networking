@@ -5,8 +5,6 @@
 #include <ArduinoJson.h>
 #include <Arduino.h>
 
-//Utils
-#include "utils/Logger.h"
 
 //Commands
 #include "command/BaseCommand.h"
@@ -19,13 +17,4 @@ class ChangeSettingsCommand : public BaseCommand{
     DynamicJsonBuffer jsonBuffer;
 };
 
-void ChangeSettingsCommand::execute(JsonObject& param){
-  JsonObject& result = this->jsonBuffer.createObject();
-  result["result"] = "Success";
-  log("Execute connect wifi command!");
-};
-
-bool ChangeSettingsCommand::isApplicable(String command){
-  return String("change_settings") == command;
-};
 #endif

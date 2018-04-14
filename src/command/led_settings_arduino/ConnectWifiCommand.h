@@ -4,9 +4,6 @@
 #include <ArduinoJson.h>
 #include <Arduino.h>
 
-//Utils
-#include "utils/Logger.h"
-
 //Commands
 #include "command/BaseCommand.h"
 class ConnectWifiCommand : public BaseCommand{
@@ -15,15 +12,5 @@ class ConnectWifiCommand : public BaseCommand{
     virtual bool  isApplicable(String command);
   private:
     DynamicJsonBuffer jsonBuffer;
-};
-
-void ConnectWifiCommand::execute(JsonObject& param){
-  JsonObject& result = this->jsonBuffer.createObject();
-  result["result"] = "Success";
-  log("Execute connect wifi command!");
-};
-
-bool ConnectWifiCommand::isApplicable(String command){
-  return String("connect_wifi") == command;
 };
 #endif

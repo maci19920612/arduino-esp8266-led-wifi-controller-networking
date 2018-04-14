@@ -4,36 +4,42 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
+#include <ArduinoJson.h>
+
+//Utils
+#include "utils/Logger.h"
+
+//Configs
+#include "Config.h"
 
 
 struct ConnectionResult{
     bool success;
     int statusCode;
 };
+struct UdpPacket{
+    char content[MAX_UDP_PACKET_SIZE];
+    int length;
+    IPAddress remoteIp;
+    int remotePort; 
+};
 
 class WifiUtil{
     public:
         static WifiUtil* getInstance();
-        ConnectionResult connect(String ssid, String password);
+        static char* mapWifiStatus(int wifiStatus);
+        ConnectionResult connect(const char* ssid, const char* password);
         void disconnect();
         bool isConnected();
+        
+        bool receive();
+        UdpPacket& getReceivedPacket();
+        void send(IPAddress& target, int& remotePort, JsonObject& object);
     private:
         static WifiUtil* instance;
         bool connected;
-        WiFiUDP* udpServer;
+        WiFiUDP udpServer;
+        UdpPacket inputPacket;
 };
 
-WifiUtil* WifiUtil::instance = 0;
-
-//Static functions
-WifiUtil* WifiUtil::getInstance(){
-    if(instance == 0){
-        instance = new WifiUtil();
-    }
-    return instance;
-};
-
-//Public functions
-
-//Private functions
 #endif

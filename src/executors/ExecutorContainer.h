@@ -15,12 +15,13 @@ enum Executor{
     wifi,
     wifiAP
 };
-/*
+
+
 struct ExecutorContainerEntry{
     Executor executorKey;
     bool state;
     BaseExecutor* executor;
-};*/
+};
 
 
 class ExecutorContainer{
@@ -32,10 +33,9 @@ class ExecutorContainer{
     private:
         static ExecutorContainer* instance;
 
-        List<int> example;
-        //List<ExecutorContainerEntry*> executors;
+        List<ExecutorContainerEntry*> executors;
 
-        //ExecutorContainer();
+        ExecutorContainer();
         
 };
 #endif

@@ -1,5 +1,3 @@
-#define DEBUG true
-
 //Libs
 #include <Arduino.h>
 #include <ArduinoJson.h>

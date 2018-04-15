@@ -56,8 +56,9 @@ ConnectionResult WifiUtil::connect(const char* ssid, const char* password){
         log("Connected, IP: %s", WiFi.localIP().toString().c_str());
     }else{
         log("Wifi connection status: %s(%d)", mapWifiStatus(wifiStatus), wifiStatus);
+        return result;
     }
-
+    
     this->udpServer.begin(UDP_PORT);
     log("UDP server started...");
     return result;

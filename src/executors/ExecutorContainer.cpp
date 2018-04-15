@@ -4,6 +4,7 @@
 #include "executors/WifiAPExecutor.h"
 #include "executors/WifiExecutor.h"
 #include "utils/list.h"
+#include <Arduino.h>
 
 ExecutorContainer* ExecutorContainer::instance = 0;
 ExecutorContainerEntry* createEntry(Executor executorKey, BaseExecutor* executor);
@@ -57,6 +58,8 @@ void ExecutorContainer::disable(Executor executorKey){
 
 //Private functions
 ExecutorContainer::ExecutorContainer(){
+    
+
     this->executors.add(
         createEntry(Executor::serial, new SerialExecutor())
     );

@@ -3,8 +3,8 @@
 //Utils
 #include "utils/Logger.h"
 #include "utils/WifiUtil.h"
-
-
+#include "utils/ArduinoUtil.h"
+#include "executors/ExecutorContainer.h"
 
 void ConnectWifiCommand::execute(JsonObject& message){
   if(!message.containsKey("param")){
@@ -19,13 +19,14 @@ void ConnectWifiCommand::execute(JsonObject& message){
   String  ssid = param["ssid"];
   String passwd = param["passwd"];
   ConnectionResult result = WifiUtil::getInstance()->connect(ssid.c_str(), passwd.c_str());
-  //TODO: We have to ACK result
+  
+  ArduinoUtil::getInstance()->sencAckConnectWifi(result.success, result.statusCode);
 
- /* if(result.success){
+  if(result.success){
     ExecutorContainer::getInstance()->enable(Executor::wifi);
   }else{
     ExecutorContainer::getInstance()->disable(Executor::wifi);
-  }*/
+  }
 };
 
 bool ConnectWifiCommand::isApplicable(String command){

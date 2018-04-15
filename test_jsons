@@ -1,6 +1,6 @@
 {"command": "ack_change_color"}
 {"command": "ack_hello"}
-{"command": "connect_wifi"}
+{"command": "connect_wifi", "param": { "ssid": "example", "passwd":"EDCRVTGB" }}
 {"command": "ack_change_settings"}
 {"command": "ack_connect"}
 {"command": "ack_switch_normal"}

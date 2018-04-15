@@ -1,7 +1,6 @@
 #include "executors/SerialExecutor.h"
 
 #include "command/led_settings_arduino/ConnectWifiCommand.h"
-#include "command/led_settings_arduino/AckHelloCommand.h"
 #include "command/led_settings_arduino/AckChangeColorCommand.h"
 #include "command/settings_arduino/AckChangeSettingsCommand.h"
 #include "command/settings_arduino/AckConnectCommand.h"
@@ -12,7 +11,6 @@
 SerialExecutor::SerialExecutor(){
     //Led settings commands
     this->commands.add(new ConnectWifiCommand());
-    this->commands.add(new AckHelloCommand());
     this->commands.add(new AckChangeColorCommand());
     
     //Settings commands

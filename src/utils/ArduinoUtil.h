@@ -15,10 +15,10 @@ class ArduinoUtil{
         void sendChangeColor(String ipAddress, int port, int r, int g, int b, int w);
 
         //Settings related functions
-        void sendAckSwitchToAp(String ipAddress, int port);
-        void sendConnect(String ipAddress, int port);
-        void sendChangeSettings(String ipAddress, int port, String ssid, String passwd);
-        void sendSwitchNormal(String ipAddress, int port);
+        void sendAckSwitchToAp();
+        void sendConnect();
+        void sendChangeSettings(String ssid, String passwd);
+        void sendSwitchNormal();
 
     private:
         static ArduinoUtil* instance;

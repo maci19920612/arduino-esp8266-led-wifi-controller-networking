@@ -2,11 +2,11 @@
 
 //Utils
 #include "utils/Logger.h"
+#include "utils/ArduinoUtil.h"
 
 void ConnectCommand::execute(JsonObject& param){
-  JsonObject& result = this->jsonBuffer.createObject();
-  result["result"] = "Success";
-  log("Execute connect wifi command!");
+  log("Execute ConnectCommand");
+  ArduinoUtil::getInstance()->sendConnect();
 };
 
 bool ConnectCommand::isApplicable(String command){

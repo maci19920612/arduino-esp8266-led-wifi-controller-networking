@@ -3,18 +3,15 @@
 //Utils
 #include "utils/Logger.h"
 #include "utils/JsonUtil.h"
+#include "utils/WifiAPUtil.h"
 
 
 void AckChangeSettingsCommand::execute(JsonObject& message){
-  if(!message.containsKey("param")){
-    error("AckChangeSettingsCommand: Message doen't contains param attribute!");
-    return;
-  }
-  JsonObject& param = message["param"];
-  if(!AllAttributeExists()("ipAddress")("port").in(param)){
-    error("AckChangeSettingsCommand: Params doen't contain ipAddress or port attributes");
-    return;
-  }
+  log("Execute AckChangeSettingsCommand"); 
+  
+  String messageString;
+  message.printTo(messageString);
+  WifiAPUtil::getInstance()->send(messageString);
 };
 
 bool AckChangeSettingsCommand::isApplicable(String command){

@@ -1,10 +1,12 @@
 #include "command/settings_wifi_ap/SwitchNormalCommand.h"
 
-
+#include "utils/Logger.h"
+#include "utils/ArduinoUtil.h"
+#include "utils/WifiAPUtil.h"
 void SwitchNormalCommand::execute(JsonObject& param){
-  JsonObject& result = this->jsonBuffer.createObject();
-  result["result"] = "Success";
-  log("Execute connect wifi command!");
+  log("Execute SwitchNormalCommand!");
+  WifiAPUtil::getInstance()->stop();
+  ArduinoUtil::getInstance()->sendSwitchNormal();
 };
 
 bool SwitchNormalCommand::isApplicable(String command){

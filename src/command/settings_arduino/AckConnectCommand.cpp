@@ -2,11 +2,11 @@
 
 //Utils
 #include "utils/Logger.h"
+#include "utils/ArduinoUtil.h"
 
 void AckConnectCommand::execute(JsonObject& param){
-  JsonObject& result = this->jsonBuffer.createObject();
-  result["result"] = "Success";
   log("Execute settings ack connect command!");
+  ArduinoUtil::getInstance()->sendConnect();  
 };
 
 bool AckConnectCommand::isApplicable(String command){

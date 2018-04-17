@@ -3,11 +3,17 @@
 
 //Utils
 #include "utils/Logger.h"
+#include "utils/ArduinoUtil.h"
+#include "utils/WifiUtil.h"
+#include "utils/WifiAPUtil.h"
+
 
 void SwitchApCommand::execute(JsonObject& param){
-  JsonObject& result = this->jsonBuffer.createObject();
-  result["result"] = "Success";
-  log("Execute settings switch ap command!");
+  log("Execute SwitchApCommand!");
+  
+  WifiUtil::getInstance()->disconnect();
+  WifiAPUtil::getInstance()->start();
+  ArduinoUtil::getInstance()->sendAckSwitchToAp();
 };
 
 bool SwitchApCommand::isApplicable(String command){

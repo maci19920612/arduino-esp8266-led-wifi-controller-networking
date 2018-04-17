@@ -11,7 +11,7 @@ WifiAPUtil* WifiAPUtil::getInstance(){
 };
 //Public functions
 void WifiAPUtil::start(){
-    WiFi.softAP("MaciWifiSettings","EDCRVTGB");
+    WiFi.softAP(WIFI_AP_SSID,WIFI_AP_PASSWD);
     this->wifiServer->begin();
 };
 
@@ -28,13 +28,13 @@ bool WifiAPUtil::available(){
     }
 
     return this->connectedWifiClient.connected() && this->connectedWifiClient.available();
-}
+};
 String WifiAPUtil::read(){
     if(this->connectedWifiClient.available()){
         return this->connectedWifiClient.readStringUntil('\n');
     }
     return "\n";
-}
+};
 void WifiAPUtil::send(String data){
     if(this->connectedWifiClient.connected()){
         this->connectedWifiClient.write((data + "\n").c_str());

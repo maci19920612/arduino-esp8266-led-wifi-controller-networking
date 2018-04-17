@@ -10,7 +10,7 @@ WifiUtil* WifiUtil::getInstance(){
     }
     return instance;
 };
-char* WifiUtil::mapWifiStatus(int status){
+const char* WifiUtil::mapWifiStatus(int status){
     switch(status){
         case WL_CONNECTED: {
             return "Connected";

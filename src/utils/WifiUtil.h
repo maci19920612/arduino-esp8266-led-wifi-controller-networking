@@ -27,7 +27,7 @@ struct UdpPacket{
 class WifiUtil{
     public:
         static WifiUtil* getInstance();
-        static char* mapWifiStatus(int wifiStatus);
+        static const char* mapWifiStatus(int wifiStatus);
         ConnectionResult connect(const char* ssid, const char* password);
         void disconnect();
         bool isConnected();

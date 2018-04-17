@@ -3,6 +3,7 @@
 #include "utils/Logger.h"
 #include "utils/ArduinoUtil.h"
 #include "utils/WifiAPUtil.h"
+
 void SwitchNormalCommand::execute(JsonObject& param){
   log("Execute SwitchNormalCommand!");
   WifiAPUtil::getInstance()->stop();

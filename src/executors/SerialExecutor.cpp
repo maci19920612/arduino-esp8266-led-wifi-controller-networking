@@ -4,7 +4,6 @@
 #include "command/led_settings_arduino/AckChangeColorCommand.h"
 #include "command/settings_arduino/AckChangeSettingsCommand.h"
 #include "command/settings_arduino/AckConnectCommand.h"
-#include "command/settings_arduino/AckSwitchNormalCommand.h"
 #include "command/settings_arduino/SwitchApCommand.h"
 
 //Public functions
@@ -16,7 +15,6 @@ SerialExecutor::SerialExecutor(){
     //Settings commands
     this->commands.add(new AckChangeSettingsCommand());
     this->commands.add(new AckConnectCommand());
-    this->commands.add(new AckSwitchNormalCommand());
     this->commands.add(new SwitchApCommand());
 }
 

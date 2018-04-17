@@ -61,12 +61,14 @@ ConnectionResult WifiUtil::connect(const char* ssid, const char* password){
     
     this->udpServer.begin(UDP_PORT);
     log("UDP server started...");
+    this->connected = true;
     return result;
 };
 
 void WifiUtil::disconnect(){
     this->udpServer.stopAll();
     WiFi.disconnect();
+    this->connected = false;
 };
 
 bool WifiUtil::receive(){
@@ -93,6 +95,10 @@ void WifiUtil::send(IPAddress& remoteIp, int& remotePort, JsonObject& object){
     object.printTo(this->udpServer);
     this->udpServer.endPacket();
 };
+
+bool WifiUtil::isConnected(){
+    return this->connected;
+}
 
 
 //Private functions

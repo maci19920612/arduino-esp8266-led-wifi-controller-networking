@@ -11,6 +11,7 @@ template<typename T> class List{
         int find(T item);
         void remove(T item);
         void removeAt(int index);
+        void clear();
         int size();
     private:
         static const int INCREASE_STEP = 7;
@@ -144,6 +145,12 @@ template <typename T> void List<T>::move(int startIndex, int distance){
     }
 
     this->internalSize += distance;
+};
+
+template <typename T> void List<T>::clear(){
+    delete this->itemContainer;
+    this->internalSize = 0;
+    this->itemContainer = new T[this->INCREASE_STEP];
 };
 
 #endif

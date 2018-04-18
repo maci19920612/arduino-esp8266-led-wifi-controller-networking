@@ -11,11 +11,14 @@
 
 
 //Public functions
+WifiExecutor::WifiExecutor(){
+    this->wifiUtil = WifiUtil::getInstance();
+}
+
 void WifiExecutor::execute(){
-    WifiUtil* wifiUtil = WifiUtil::getInstance();
-    if(wifiUtil->isConnected()){
-        if(wifiUtil->receive()){
-            UdpPacket receivedPacket = wifiUtil->getReceivedPacket();
+    if(this->wifiUtil->isConnected()){
+        if(this->wifiUtil->receive()){
+            UdpPacket receivedPacket = this->wifiUtil->getReceivedPacket();
             JsonObject& receivedObject = this->jsonBuffer.parseObject(receivedPacket.content);
             if(!receivedObject.success()){
                 error("WifiExecutor: Invalid json received: (%s:%d) %s",receivedPacket.remoteIp.toString().c_str(), receivedPacket.remotePort, receivedPacket.content);
@@ -59,8 +62,10 @@ void WifiExecutor::init(){
 }; 
 void WifiExecutor::dispose(){
     log("WifiExecutor dispose called");
+    
     for(int i = 0; i < this->commands.size(); i++){
-        delete this->commands[0];
-        this->commands.removeAt(0);
+        delete this->commands[i];
     }
+
+    this->commands.clear();
 };

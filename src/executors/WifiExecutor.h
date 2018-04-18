@@ -19,6 +19,7 @@ class WifiExecutor : public BaseExecutor{
         virtual void execute();
         virtual void init();
         virtual void dispose();
+        WifiExecutor();
     private:
         WifiUtil* wifiUtil;
         List<BaseCommand*> commands;

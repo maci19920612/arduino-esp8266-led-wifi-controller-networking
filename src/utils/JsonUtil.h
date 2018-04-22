@@ -13,4 +13,14 @@ class AllAttributeExists{
         List<String> attributes;
 };
 
+class JsonUtil{
+    public:
+        static JsonUtil* getInstance();
+        DynamicJsonBuffer* getBuffer();
+    private:
+        JsonUtil();
+        DynamicJsonBuffer* jsonBuffer;
+        static JsonUtil* instance;
+};
+
 #endif

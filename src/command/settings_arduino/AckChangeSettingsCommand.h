@@ -13,8 +13,6 @@ class AckChangeSettingsCommand : public BaseCommand{
   public:
     virtual void execute(JsonObject& param);
     virtual bool  isApplicable(String command);
-  private:
-    DynamicJsonBuffer jsonBuffer;
 };
 
 #endif

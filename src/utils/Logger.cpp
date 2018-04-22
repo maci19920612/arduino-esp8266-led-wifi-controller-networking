@@ -18,7 +18,7 @@ void log(const char *fmt, ...) {
 };
 
 void error(const char* fmt, ...){
-    #if DEBUG\
+    #if DEBUG
 
     String format = "Error: " + String(fmt) + "\n";
     static char buffer[256];

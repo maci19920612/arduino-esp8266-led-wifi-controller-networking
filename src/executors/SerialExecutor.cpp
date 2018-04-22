@@ -6,6 +6,9 @@
 #include "command/settings_arduino/AckConnectCommand.h"
 #include "command/settings_arduino/SwitchApCommand.h"
 
+
+#include "utils/JsonUtil.h"
+
 //Public functions
 SerialExecutor::SerialExecutor(){
     //Led settings commands
@@ -29,7 +32,7 @@ void SerialExecutor::dispose(){
 void SerialExecutor::execute(){
     if(Serial.available() > 0){
         String serialJson = Serial.readStringUntil('\n');
-        JsonObject& jsonObject = this->jsonBuffer.parseObject(serialJson);
+        JsonObject& jsonObject = JsonUtil::getInstance()->getBuffer()->parseObject(serialJson);
         if(!jsonObject.success()){
             error("Invalid json received: %s\n", serialJson.c_str());
         }else{

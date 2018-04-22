@@ -21,8 +21,16 @@ void WifiAPUtil::stop(){
 }
 bool WifiAPUtil::available(){
     if(this->wifiServer->hasClient()){
+        Serial.println("AP: Has client");
         WiFiClient availableClient = this->wifiServer->available();
-        if(this->connectedWifiClient != availableClient && !this->connectedWifiClient.connected()){
+        Serial.print("Available client: ");
+        Serial.println((bool)availableClient);
+        Serial.print("Equals to current client: ");
+        Serial.println(this->connectedWifiClient == availableClient);
+        Serial.print("Currenct client is connected: ");
+        Serial.println(this->connectedWifiClient.connected());
+
+        if(!this->connectedWifiClient.connected()){
             this->connectedWifiClient = availableClient;
         }
     }

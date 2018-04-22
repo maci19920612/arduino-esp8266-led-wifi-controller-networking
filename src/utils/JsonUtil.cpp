@@ -12,3 +12,23 @@ bool AllAttributeExists::in(JsonObject& target){
     }
     return true;
 };
+
+
+//JsonUtil class implementation
+JsonUtil* JsonUtil::instance = 0;
+
+//Static functions
+JsonUtil* JsonUtil::getInstance(){
+    if(instance == 0){
+        instance = new JsonUtil();
+    }
+    return instance;
+}
+DynamicJsonBuffer* JsonUtil::getBuffer(){
+    return this->jsonBuffer;
+}
+
+//Private functions
+JsonUtil::JsonUtil(){
+    this->jsonBuffer = new DynamicJsonBuffer();
+}

@@ -13,9 +13,6 @@ class AckChangeColorCommand : public BaseCommand{
   public:
     virtual void execute(JsonObject& param);
     virtual bool isApplicable(String command);
-  private:
-    //TODO: We have to move it into a global container!
-    DynamicJsonBuffer jsonBuffer;
 };
 
 #endif

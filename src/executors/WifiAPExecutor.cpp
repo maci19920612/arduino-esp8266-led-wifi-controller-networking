@@ -8,16 +8,16 @@
 #include "command/settings_wifi_ap/ChangeSettingsCommand.h"
 #include "command/settings_wifi_ap/ConnectCommand.h"
 #include "command/settings_wifi_ap/SwitchNormalCommand.h"
+#include "utils/JsonUtil.h"
 
 //Public functions
 WifiAPExecutor::WifiAPExecutor(){
     this->wifiAPUtil = WifiAPUtil::getInstance();
 }
 void WifiAPExecutor::execute(){
-    log("WifiAPExecutor execute called");
     if(this->wifiAPUtil->available()){
         String receivedPacket = this->wifiAPUtil->read();
-        JsonObject& receivedObject = this->jsonBuffer.parseObject(receivedPacket);
+        JsonObject& receivedObject = JsonUtil::getInstance()->getBuffer()->parseObject(receivedPacket);
         if(!receivedObject.success()){
             error("WifiAPExecutor: Invalid json received: %s", receivedPacket.c_str());
             return;

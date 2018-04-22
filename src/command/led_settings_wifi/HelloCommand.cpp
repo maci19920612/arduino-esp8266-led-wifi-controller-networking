@@ -4,6 +4,7 @@
 #include "utils/Logger.h"
 #include "utils/JsonUtil.h"
 #include "utils/WifiUtil.h"
+#include "utils/JsonUtil.h"
 
 void HelloCommand::execute(JsonObject& message){
   log("Execute connect wifi command!");
@@ -24,7 +25,7 @@ void HelloCommand::execute(JsonObject& message){
     error("HelloCommand: Invalid ipAddress format");
     return;
   }
-  JsonObject& outMessage  = this->jsonBuffer.createObject();
+  JsonObject& outMessage  = JsonUtil::getInstance()->getBuffer()->createObject();
   outMessage["command"] = "ack_hello";
   WifiUtil::getInstance()->send(ipAddressObject, port, outMessage);
 };

@@ -1,6 +1,7 @@
 #include "command/led_settings_arduino/AckChangeColorCommand.h"
 #include "utils/ArduinoUtil.h"
 #include "utils/WifiUtil.h"
+#include "utils/JsonUtil.h"
 #include <ESP8266WiFi.h>
 void AckChangeColorCommand::execute(JsonObject& message){
   log("Execute ACK change color command!");
@@ -15,7 +16,7 @@ void AckChangeColorCommand::execute(JsonObject& message){
   }
   String ipAddress = param["ipAddress"];
   int port = param["port"];
-  JsonObject& outMessage = this->jsonBuffer.createObject();
+  JsonObject& outMessage = JsonUtil::getInstance()->getBuffer()->createObject();
   outMessage["command"] = "ack_change_color";
   IPAddress ipAddressObject;
   if(!ipAddressObject.fromString(ipAddress)){

@@ -17,7 +17,6 @@ class WifiAPExecutor : public BaseExecutor{
         WifiAPExecutor();
     private:
         WifiAPUtil* wifiAPUtil;
-        DynamicJsonBuffer jsonBuffer;
         List<BaseCommand*> commands;
 };
 #endif

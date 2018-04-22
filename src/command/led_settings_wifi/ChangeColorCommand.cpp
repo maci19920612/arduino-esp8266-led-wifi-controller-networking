@@ -6,7 +6,7 @@
 #include <ESP8266WiFi.h>
 
 void ChangeColorCommand::execute(JsonObject& message){
-  log("Execute connect wifi command!");
+  log("Execute change color wifi command!");
   if(!message.containsKey("param")){
     error("ChangeColorCommand: message doen't containt param attribute");
     return;

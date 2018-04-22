@@ -22,6 +22,5 @@ class SerialExecutor : public BaseExecutor{
         virtual void dispose();
     private:
         List<BaseCommand*> commands;
-        DynamicJsonBuffer jsonBuffer;
 };
 #endif
